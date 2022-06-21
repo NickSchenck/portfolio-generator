@@ -1,6 +1,6 @@
+const fs = require("fs");
 const inquirer = require('inquirer');
-// const fs = require("fs");
-// const generatePage = require("./src/page-template");
+const generatePage = require("./src/page-template");
 
 const promptUser = () => {
     return inquirer.prompt([
@@ -31,9 +31,22 @@ const promptUser = () => {
             }
         },
         {
+            type: "confirm",
+            name: "confirmAbout",
+            message: "Would you like to enter some information about yourself for an 'About' section?",
+            default: true
+        },
+        {
             type: "input",
             name: "about",
-            message: "Provide some information about yourself:"
+            message: "Provide some information about yourself:",
+            when: ({ confirmAbout }) => {
+                if (confirmAbout) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         }
     ]);
 };
@@ -105,26 +118,25 @@ const promptProject = portfolioData => {
             message: "Would you like to enter another project?",
             default: false
         }
-    ]);
+    ])
+    .then(projectData => {
+        portfolioData.projects.push(projectData);
+        if (projectData.confirmAddProject) {
+            return promptProject(portfolioData);
+        } else {
+            return portfolioData;
+        }
+    });
 };
     promptUser()
     .then(promptProject)
     .then(portfolioData => {
         console.log(portfolioData);
-    })
-    // .then(projectAnswers => console.log(projectAnswers))
-    // .then(projectData => {
-    //     portfolioData.projects.push(projectData);
-    //     if (projectData.confirmAddProject) {
-    //         return promptProject(portfolioData);
-    //     } else {
-    //         return portfolioData;
-    //     }
-    // });
-// const pageHTML = generatePage(name, github);
-
+    
+    
+// const pageHTML = generatePage(portfolioData);
 // fs.writeFile("./index.html", pageHTML, err => {
-//     if (err) throw err;
-
+//     if (err) throw new Error (err);
 //     console.log("Portfolio complete, check out index.html to see the output.");
 // });
+});
