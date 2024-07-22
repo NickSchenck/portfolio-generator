@@ -1,1 +1,3 @@
 # portfolio-generator
+
+To use: User should first clone the repo. Afterwards, user will navigate to the directory in Git/CLI. Once in the root directory for the project, user will run the command 'npm i inquirer' to install the inquirer node packet. Once the process of installation has completed, the user can run the app with the command 'node .', and then follow the prompts provided to complete the process of generating a portfolio.

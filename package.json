@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/NickSchenck/portfolio-generator#readme",
   "dependencies": {
-    "inquirer": "^7.0.3"
+    "inquirer": "^7.3.3"
   }
 }
