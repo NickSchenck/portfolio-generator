@@ -1,4 +1,8 @@
-//creates the about section if data exists to pass to it
+/*This page, page-template.js, is also a component file to the larger app, similat to generate-site.js.*/
+/*generateAbout is a function which generates a specific portion of our page. We first initialize aboutText as a parameter, then
+immediately enter an if statement to check if aboutText evaluates to falsey, and return an empty string if so. If not, we instead return
+a string which contains html markup/structuring, as well as a template literal that allows us to insert the aboutText parameter into
+that markup.*/
 const generateAbout = aboutText => {
   if (!aboutText) {
     return "";
@@ -12,6 +16,8 @@ const generateAbout = aboutText => {
   `;
 };
 
+/*This one is a bit confusing, mainly the calling of .filter and .map on projectsArr or
+where/how all that becomes associated with meaningful data throughout the app.*/
 const generateProjects = projectsArr => {
   return `
   <section class="my-3" id="portfolio">
@@ -54,62 +60,6 @@ const generateProjects = projectsArr => {
   </section>
   `;
 };
-//   //get array of just featured projects
-//   const featuredProjects = projectsArr.filter(project => {
-//     if (project.feature) {
-//       return true;
-//     } else {
-//       return false;
-//     }
-//   });
-
-//   //get array of all nonfeatured projects
-//   const nonFeaturedProjects = projectsArr.filter(project => {
-//     if (!project.feature) {
-//       return true;
-//     } else {
-//       return false;
-//     }
-//   });
-
-//   const featuredProjectHtmlArr = featuredProjects.map(({ name, description, languages, link }) => {
-//     return `
-//     <div class="col-12 col-md-6 mb-2 bg-dark text-light p-3 flex-column">
-//     <h3 class="portfolio-item-title text-light">${name}</h3>
-//     <h5 class="portfolio-languages">
-//       Built With:
-//       ${languages.join(', ')}
-//     </h5>
-//     <p>${description}</p>
-//     <a href="${link}" class="btn mt-auto"><i class="fab fa-github mr-2"></i>View Project on GitHub</a>
-//   </div>
-//     `;
-//   });
-
-//   const nonFeaturedProjectHtmlArr = nonFeaturedProjects.map(({ name, description, languages, link }) => {
-//     return `
-//     <div class="col-12 col-md-6 mb-2 bg-dark text-light p-3 flex-column">
-//     <h3 class="portfolio-item-title text-light">${name}</h3>
-//     <h5 class="portfolio-languages">
-//       Built With:
-//       ${languages.join(', ')}
-//     </h5>
-//     <p>${description}</p>
-//     <a href="${link}" class="btn mt-auto"><i class="fab fa-github mr-2"></i>View Project on GitHub</a>
-//   </div>
-//     `;
-//   });
-
-//   return `
-//   <section class="my-3" id="portfolio">
-//   <h2 class="text-dark bg-primary p-2 display-inline-block">Work</h2>
-//   <div class="flex-row justify-space-between">
-//   ${featuredProjectHtmlArr.join("")}
-//   ${nonFeaturedProjectHtmlArr.join("")}
-//   </div>
-// </section>
-//   `;
-// };
 
 module.exports = templateData => {
   console.log(templateData);
