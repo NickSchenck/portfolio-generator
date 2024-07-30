@@ -16,8 +16,15 @@ const generateAbout = aboutText => {
   `;
 };
 
-/*This one is a bit confusing, mainly the calling of .filter and .map on projectsArr or
-where/how all that becomes associated with meaningful data throughout the app.*/
+/*generateProjects is a function which returns html markup in string format for parsing project-associated data into physical form. We
+first initialize the projectsArr parameter, then enter into a return statement right away. The majority of the function and return is
+html markup, but we do use template literals to access the projectsArr parameter, and append .filter and .map methods onto it. The
+.filter method will sort through the whole object-array contained in projectsArr, and make a project-card/section for each of the
+entries within projectsArr, and the .map method will determine the values associated with the variables name, description, languages, and
+link then fill the details of a project-card with its associated values. We enter a second return in the anonymous function assigned to
+the .map method, which determines the layout of a given project-cards content. We then call .join method with nothing passed into it to
+join these elements without any additional space between them. Finally, the second section of generateProjects is for the generation of
+projects the user does NOT want featured- a prompt asked of the user while interacting with the CLI.*/
 const generateProjects = projectsArr => {
   return `
   <section class="my-3" id="portfolio">
@@ -61,11 +68,14 @@ const generateProjects = projectsArr => {
   `;
 };
 
+/*Here we are exporting an anonymous function. We start the function by initializing the parameter templateData, then use object
+destructuring to assign values to our variables of projects, about, and header. After we enter a return statement that is again largely
+returning html markup in string format for parsing into our physical page. We still use template literals to inject data into the html
+markup where we need user-provided information to be, as well as calling both generateAbout and generateProjects with arguments from our
+object destructuring, and calling a new instance of the Date class to provide the current year at bottom-of-page.*/
 module.exports = templateData => {
-  console.log(templateData);
-  //destructures page data by each section
   const { projects, about, ...header } = templateData;
-
+  
   return `
     <!DOCTYPE html> 
   <html lang="en"> 
